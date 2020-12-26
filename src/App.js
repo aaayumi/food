@@ -1,46 +1,39 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+import Search from './Search';
+import Home from './Home';
 import './App.css';
 
 function App() {
-  const [data, setData] = useState();
-  const [search, setSearch] = useState();
-  const API_KEY = process.env.REACT_APP_API_KEY
-
-
-  // useEffect(() => {
-  //   let mounted = true;
-  //   fetch(`https://api.spoonacular.com/food/ingredients/search?apiKey=${API_KEY}&query=apple`)
-  //       .then( data => data.json())
-  //       .then(item => {
-  //         if(mounted) {
-  //           setData(item)
-  //         }
-  //       })
-  //   return () => mounted = false;
-  // }, [])
-
-
-
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      fetch(`https://api.spoonacular.com/food/ingredients/search?apiKey=${API_KEY}&query=${search}`)
-          .then(data => data.json())
-          .then(item => {
-              setData(item)
-          })
-    }
-
   return (
-    <div className="App">
-        <form onSubmit={handleSubmit}>
-        <input type={`text`} onChange={(e) => setSearch(e.target.value)} />
-        </form>
+<Router>
+    <div>
+        <nav>
+            <ul>
+                <li>
+                    <Link to={"/"}>Home</Link>
+                </li>
+                <li>
+                    <Link to={"/search"}>Search</Link>
+                </li>
+            </ul>
+        </nav>
 
-        {data &&
-            data.results.map((result, i) =>
-                <li key={i}>{result.name}</li>)
-        }
+        <Switch>
+            <Route path={"/search"}>
+                <Search />
+            </Route>
+            <Route path={"/"}>
+                <Home />
+            </Route>
+        </Switch>
     </div>
+</Router>
   );
 }
 
