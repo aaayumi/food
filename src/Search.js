@@ -6,21 +6,6 @@ function Search() {
     const [search, setSearch] = useState();
     const API_KEY = process.env.REACT_APP_API_KEY
 
-
-    // useEffect(() => {
-    //   let mounted = true;
-    //   fetch(`https://api.spoonacular.com/food/ingredients/search?apiKey=${API_KEY}&query=apple`)
-    //       .then( data => data.json())
-    //       .then(item => {
-    //         if(mounted) {
-    //           setData(item)
-    //         }
-    //       })
-    //   return () => mounted = false;
-    // }, [])
-
-
-
     const handleSubmit = (e) => {
         e.preventDefault();
         fetch(`https://api.spoonacular.com/food/ingredients/search?apiKey=${API_KEY}&query=${search}`)
@@ -33,6 +18,7 @@ function Search() {
     return (
         <div className="App">
             <form onSubmit={handleSubmit}>
+                <h2>Get inspiration! Type an ingredient.</h2>
                 <input type={`text`} onChange={(e) => setSearch(e.target.value)} />
             </form>
 

@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Search from './Search';
 import Home from './Home';
+import Recipe from './Recipe';
 import './App.css';
 
 function App() {
@@ -21,12 +22,18 @@ function App() {
                 <li>
                     <Link to={"/search"}>Search</Link>
                 </li>
+                <li>
+                    <Link to={"/recipe"}>Recipe</Link>
+                </li>
             </ul>
         </nav>
 
         <Switch>
             <Route path={"/search"}>
                 <Search />
+            </Route>
+            <Route path={"/recipe"}>
+                <Recipe />
             </Route>
             <Route path={"/"}>
                 <Home />
