@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
+import './Search.css';
 
 function Search() {
     const [data, setData] = useState();
@@ -16,7 +16,7 @@ function Search() {
     }
 
     return (
-        <div className="App">
+        <div className="Search">
             <form onSubmit={handleSubmit}>
                 <h2>Get inspiration! Type an ingredient.</h2>
                 <input type={`text`} onChange={(e) => setSearch(e.target.value)} />

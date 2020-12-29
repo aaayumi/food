@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
+import './Recipe.css';
 
 function Recipe() {
     const [data, setData] = useState();
@@ -18,7 +18,7 @@ function Recipe() {
     }, [])
 
     return (
-        <div className="App">
+        <div className="Recipe">
 
             {data &&
             <div>
