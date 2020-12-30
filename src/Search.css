@@ -3,3 +3,9 @@
     justify-content: center;
     align-items: center;
 }
+
+.Search .result li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

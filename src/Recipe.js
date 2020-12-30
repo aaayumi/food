@@ -8,7 +8,7 @@ function Recipe() {
     useEffect(() => {
         let mounted = true;
         fetch(`https://api.spoonacular.com/recipes/random?apiKey=${API_KEY}`)
-            .then( data => data.json())
+            .then(data => data.json())
             .then(item => {
                 if(mounted) {
                     setData(item.recipes[0])

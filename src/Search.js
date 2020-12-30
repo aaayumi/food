@@ -22,10 +22,12 @@ function Search() {
                 <input type={`text`} onChange={(e) => setSearch(e.target.value)} />
             </form>
 
-            {data &&
-            data.results.map((result, i) =>
-                <li key={i}>{result.name}</li>)
-            }
+            <div className="result">
+                {data &&
+                data.results.map((result, i) =>
+                    <li key={i}>{result.name}</li>)
+                }
+            </div>
         </div>
     );
 }
