@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useReducer} from 'react';
 import { useMachine } from "react-robot";
 import './Home.css';
 import { createMachine, state, transition, invoke, reduce } from 'robot3';
@@ -8,9 +8,9 @@ const context = () => ({
 
 async function loadUsers() {
     return [
-        { id: 1, name: 'one' },
-        { id: 2, name: 'two' },
-        { id: 3, name: 'three'}
+        { id: 1, name: 'John' },
+        { id: 2, name: 'Max' },
+        { id: 3, name: 'Anne'}
     ];
 }
 const machine = createMachine({
@@ -38,6 +38,18 @@ const useFetch = (url, options) => {
     return { response }
 };
 
+function reducer (state, action) {
+    if (action === 'increment') {
+        return state + 1
+    } else if (action === 'decrement') {
+        return state -1
+    } else if (action === 'reset') {
+        return 0
+    } else {
+        throw new Error(`This action type is not supported`)
+    }
+}
+
 function Home() {
     const [current, send] = useMachine(machine);
     const state = current.name;
@@ -45,14 +57,24 @@ function Home() {
     const disabledButton = state === 'loading' || state === 'loaded';
     const API_KEY = process.env.REACT_APP_API_KEY
 
-    const res = useFetch(`https://api.spoonacular.com/food/jokes/random?apiKey=${API_KEY}`, {})
-    if (!res.response) {
-        return <div>Loading...</div>
-    }
-    const data = res.response
+    // const res = useFetch(`https://api.spoonacular.com/food/jokes/random?apiKey=${API_KEY}`, {})
+    // if (!res.response) {
+    //     return <div>Loading...</div>
+    // }
+    // const data = res.response
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [count, dispatch] = useReducer(
+        reducer,
+        0
+    )
     return (
         <div className="Home">
-             <h2>{data.text}</h2>
+            <h2>{count}</h2>
+            <button onClick={() => dispatch('increment')}>plus</button>
+            <button onClick={() => dispatch('decrement')}>minus</button>
+            <button onClick={() => dispatch('reset')}>minus</button>
+             {/*<h2>{data.text}</h2>*/}
             {state === 'loading' ? (
                 <div>Loading users...</div>
             ) : state === 'loaded' ? (
