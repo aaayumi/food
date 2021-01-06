@@ -57,24 +57,24 @@ function Home() {
     const disabledButton = state === 'loading' || state === 'loaded';
     const API_KEY = process.env.REACT_APP_API_KEY
 
-    // const res = useFetch(`https://api.spoonacular.com/food/jokes/random?apiKey=${API_KEY}`, {})
-    // if (!res.response) {
-    //     return <div>Loading...</div>
-    // }
-    // const data = res.response
-
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [count, dispatch] = useReducer(
         reducer,
         0
     )
+
+    const res = useFetch(`https://api.spoonacular.com/food/jokes/random?apiKey=${API_KEY}`, {})
+    if (!res.response) {
+        return <div>Loading...</div>
+    }
+    const data = res.response
+
     return (
         <div className="Home">
             <h2>{count}</h2>
             <button onClick={() => dispatch('increment')}>plus</button>
             <button onClick={() => dispatch('decrement')}>minus</button>
             <button onClick={() => dispatch('reset')}>minus</button>
-             {/*<h2>{data.text}</h2>*/}
+             <h2>{data.text}</h2>
             {state === 'loading' ? (
                 <div>Loading users...</div>
             ) : state === 'loaded' ? (
