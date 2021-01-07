@@ -28,11 +28,16 @@ function Search() {
         sentMessage.current +=1
     }
 
+    const handleChange = (data) => {
+        setSearch(data)
+    }
+
     return (
         <div className="Search">
             <form onSubmit={handleSubmit}>
                 <h2>Get inspiration! Type an ingredient.</h2>
-                <SearchInput ref={textInputRef} onChange={(e) => setSearch(e.target.value)} />
+                <SearchInput ref={textInputRef}
+                             searchChange={handleChange} />
             </form>
 
             <div className="result">
