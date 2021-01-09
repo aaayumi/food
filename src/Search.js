@@ -41,11 +41,13 @@ function Search() {
             </form>
 
             <div className="result">
-                {data &&
+                {data ?
                 data.results.map((result, i) =>
                     <li key={i}>{result.name}</li>)
+                    : <p>No Data</p>
                 }
             </div>
+            <h2>Message</h2>
             <input onChange={(e)=> setMessage(e.target.value)}
                    value={message} />
                    <button onClick={sendMessage}>Send</button>

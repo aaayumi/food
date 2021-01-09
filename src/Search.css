@@ -1,7 +1,5 @@
 .Search form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block;
 }
 
 .Search .result li {

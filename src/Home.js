@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useReducer} from 'react';
 import { useMachine } from "react-robot";
+import useClippy from "use-clippy";
 import './Home.css';
 import { createMachine, state, transition, invoke, reduce } from 'robot3';
 const context = () => ({
@@ -51,6 +52,7 @@ function reducer (state, action) {
 }
 
 function Home() {
+    const [clipboard, setClipboard] = useClippy();
     const [current, send] = useMachine(machine);
     const state = current.name;
     const { users } = current.context;
@@ -67,6 +69,8 @@ function Home() {
         return <div>Loading...</div>
     }
     const data = res.response
+
+
 
     return (
         <div className="Home">
@@ -89,6 +93,21 @@ function Home() {
             ): <div></div>}
             <button onClick={() => send('fetch')} disabled={disabledButton}>
                 Load users
+            </button>
+
+            <button
+                onClick={()=> {
+                    alert(`Your clipboard contains ${clipboard}`);
+                }}>
+                Read my clipboard
+            </button>
+
+            <button
+                onClick={() => {
+                    setClipboard(`Random number: ${Math.random()}`);
+                }}
+                >
+                Copy something new
             </button>
         </div>
     );

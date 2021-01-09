@@ -13,6 +13,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "robot3": "^0.2.18",
+    "use-clippy": "^1.0.8",
+    "use-mouse-action": "^2.0.0",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
@@ -38,5 +40,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/react-hooks": "^4.0.0",
+    "react-test-renderer": "^17.0.1"
   }
 }
