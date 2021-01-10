@@ -3,6 +3,7 @@ import { useMachine } from "react-robot";
 import useClippy from "use-clippy";
 import './Home.css';
 import { createMachine, state, transition, invoke, reduce } from 'robot3';
+import { useMobileWindow } from "./mobileWindow"
 const context = () => ({
     users: []
 });
@@ -52,7 +53,8 @@ function reducer (state, action) {
 }
 
 function Home() {
-    const [clipboard, setClipboard] = useClippy();
+    const onSmallScreen = useMobileWindow(); // custom hook
+    const [clipboard, setClipboard] = useClippy(); // crippy library
     const [current, send] = useMachine(machine);
     const state = current.name;
     const { users } = current.context;
@@ -69,8 +71,6 @@ function Home() {
         return <div>Loading...</div>
     }
     const data = res.response
-
-
 
     return (
         <div className="Home">
