@@ -57,7 +57,7 @@ function Home() {
     const [clipboard, setClipboard] = useClippy(); // crippy library
     const [current, send] = useMachine(machine);
     const state = current.name;
-    const { users } = current.context;
+    const {users} = current.context;
     const disabledButton = state === 'loading' || state === 'loaded';
     const API_KEY = process.env.REACT_APP_API_KEY
 
@@ -72,6 +72,39 @@ function Home() {
     }
     const data = res.response
 
+    //map
+    const number = [1, 2, 3, 4]
+    const map = number.map(number => number + 5)
+    console.log('map', map)
+
+    //filter
+    const member = [
+        {id: 1, age: 30},
+        {id: 2, age: 10},
+        {id: 3, age: 40},
+        {id: 4, age: 22},
+        {id: 5, age: 68},
+    ]
+
+    const filter = member.filter(mem => mem.age > 40 && [...member])
+
+    console.log('filter', filter)
+
+    //reduce
+    const character = ['a', 'b', 'c', 'd', 'a', 'b', 'b'];
+    const makeCount = character.reduce((obj, count) =>{
+    if (!obj[count])
+    {
+        obj[count] = 1;
+    }
+else
+    {
+        obj[count]++;
+    }
+    return obj;
+   }, {});
+
+    console.log('reduce', makeCount)
     return (
         <div className="Home">
             <h2>{count}</h2>
